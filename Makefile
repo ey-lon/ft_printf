@@ -42,7 +42,7 @@ BNS :=	src_bonus/ft_printf_bonus.c \
 	src_bonus/ft_print_hex_bonus.c \
 	src_bonus/ft_print_ptr_bonus.c \
 	src_bonus/ft_flags_bonus.c \
-	src_bonus/ft_flags_utils.c \
+	src_bonus/ft_flags_utils_bonus.c \
 	src_bonus/utils_bonus.c
 
 OBJ_S = $(SRC:.c=.o)
