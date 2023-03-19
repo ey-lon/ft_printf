@@ -6,18 +6,11 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:25:55 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/19 09:49:50 by abettini         ###   ########.fr       */
+/*   Updated: 2023/03/19 14:01:52 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf_bonus.h"
-
-int	ft_max(int a, int b)
-{
-	if (a < b)
-		return (b);
-	return (a);
-}
 
 int	ft_n_of(int len, int x)
 {

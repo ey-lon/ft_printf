@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 14:48:17 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/19 12:40:12 by abettini         ###   ########.fr       */
+/*   Updated: 2023/03/19 14:03:02 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int	ft_ptr_symbol(t_ptf ptf, long unsigned int n, int x)
 	return (len);
 }
 
-int	ft_print_ptr(unsigned long int n, t_ptf ptf)
+int	ft_print_ptr(long unsigned int n, t_ptf ptf)
 {
 	int	print_len;
 	int	len;
