@@ -51,5 +51,3 @@ int	ft_print_special(int c, int count)
 		len += write(1, &c, 1);
 	return (len);
 }
-
-//controllare incompatibilita' flags!!!!!!!
