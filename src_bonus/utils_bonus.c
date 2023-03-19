@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:25:55 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/18 17:22:00 by abettini         ###   ########.fr       */
+/*   Updated: 2023/03/19 09:49:50 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,13 @@ int	ft_max(int a, int b)
 	return (a);
 }
 
-int	ft_quant(int len, int extra)
+int	ft_n_of(int len, int x)
 {
-	if (len >= 0 && extra >= 0)
-	{
-		extra = extra - len;
-		if (extra >= 0)
-			return (extra);
-	}
-	return (0);
+	if (x > len)
+		x = x - len;
+	else
+		x = 0;
+	return (x);
 }
 
 int	ft_isdigit(int arg)

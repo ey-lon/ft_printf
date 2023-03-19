@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf_bonus.h                                :+:      :+:    :+:   */
+/*   ft_printf_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 09:53:26 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/18 17:22:25 by abettini         ###   ########.fr       */
+/*   Updated: 2023/03/19 09:49:50 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_print_hex(unsigned int n, t_ptf ptf);
 int	ft_print_ptr(long unsigned int n, t_ptf ptf);
 // utils ---------------------------------------------
 int	ft_max(int a, int b);
-int	ft_quant(int len, int extra);
+int	ft_n_of(int len, int x);
 int	ft_isdigit(int arg);
 int	ft_atoi(const char *str);
 

@@ -6,7 +6,7 @@
 #    By: abettini <abettini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 14:36:43 by abettini          #+#    #+#              #
-#    Updated: 2023/03/18 17:58:10 by abettini         ###   ########.fr        #
+#    Updated: 2023/03/19 09:46:44 by abettini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CMP = $(GREEN)successfully compiled$(NOCOL)
 
 CC = cc
 
-NAME = libftprintf.a
+NAME = ft_printf.a
 
 SRC :=	src/ft_printf.c \
 	src/ft_print_chr.c \

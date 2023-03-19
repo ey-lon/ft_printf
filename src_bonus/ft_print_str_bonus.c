@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 14:27:10 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/18 17:18:12 by abettini         ###   ########.fr       */
+/*   Updated: 2023/03/19 09:49:50 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,11 @@ int	ft_print_str(char *str, t_ptf ptf)
 
 	len = ft_str_len(str, ptf);
 	print_len = len;
-	print_len += ft_print_special(ptf.pad, ptf.pad_count - len);
+	ptf.pad_count = ft_n_of(len, ptf.pad_count);
+	if (!ft_flag_check(ptf.flags, PTF_MINUS))
+		print_len += ft_print_special(ptf.pad, ptf.pad_count);
 	ft_put_str(str, len);
+	if (ft_flag_check(ptf.flags, PTF_MINUS))
+		print_len += ft_print_special(ptf.pad, ptf.pad_count);
 	return (print_len);
 }

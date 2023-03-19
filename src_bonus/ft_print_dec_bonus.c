@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 14:48:17 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/18 17:21:44 by abettini         ###   ########.fr       */
+/*   Updated: 2023/03/19 09:49:50 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,42 +50,31 @@ static int	ft_int_len(int n)
 	return (len);
 }
 
-static int	ft_dec_no_min(int n, int len, t_ptf ptf)
+static int	ft_symbol(t_ptf ptf, int n, int x)
 {
-	int	print_len;
+	int	len;
 
-	print_len = 0;
+	len = 0;
+	if (ft_flag_check(ptf.flags, PTF_SPACE) \
+		&& !ft_flag_check(ptf.flags, PTF_PLUS))
+	{
+		len++;
+		if (x == 0)
+			write(1, " ", 1);
+	}
+	if (ft_flag_check(ptf.flags, PTF_PLUS) && n >= 0)
+	{
+		len++;
+		if (x == 1)
+			write(1, "+", 1);
+	}
 	if (n < 0)
 	{
-		print_len += ft_print_special(ptf.pad, \
-			ptf.pad_count - (len + 1) - ft_quant(len, ptf.prec_count));
-		print_len += write(1, "-", 1);
+		len++;
+		if (x == 1)
+			write(1, "-", 1);
 	}
-	else if (ft_flag_check(ptf.flags, PTF_PLUS))
-	{
-		print_len += ft_print_special(ptf.pad, \
-			ptf.pad_count - (len + 1) - ft_quant(len, ptf.prec_count));
-		print_len += write(1, "+", 1);
-	}
-	else
-		print_len += ft_print_special(ptf.pad, \
-			ptf.pad_count - len - ft_quant(len, ptf.prec_count));
-	print_len += ft_print_special('0', ptf.prec_count - len);
-	ft_putnbr(n);
-	return (print_len);
-}
-
-static int	ft_dec_min(int n, int len, t_ptf ptf)
-{
-	int	print_len;
-
-	print_len = 0;
-	if (ft_flag_check(ptf.flags, PTF_PLUS))
-		print_len += write(1, "+", 1);
-	print_len += ft_print_special('0', ptf.prec_count - len);
-	ft_putnbr(n);
-	print_len += ft_print_special(ptf.pad, ptf.pad_count - (len + print_len));
-	return (print_len);
+	return (len);
 }
 
 int	ft_print_dec(int n, t_ptf ptf)
@@ -95,16 +84,23 @@ int	ft_print_dec(int n, t_ptf ptf)
 
 	len = ft_int_len(n);
 	print_len = len;
-	if (ft_flag_check(ptf.flags, PTF_SPACE) \
-		&& !ft_flag_check(ptf.flags, PTF_PLUS))
-	{
-		print_len += write(1, &ptf.pad, 1);
-		if (!ft_flag_check(' ', PTF_MINUS))
-			ptf.pad_count--;
-	}
+	ptf.prec_count = ft_n_of(len, ptf.prec_count);
+	ptf.pad_count = ft_n_of(len + ptf.prec_count, ptf.pad_count);
+	ptf.pad_count -= ft_symbol(ptf, n, 0);
 	if (!ft_flag_check(ptf.flags, PTF_MINUS))
-		print_len += ft_dec_no_min(n, len, ptf);
-	else
-		print_len += ft_dec_min(n, len, ptf);
+		print_len += ft_print_special(ptf.pad, ptf.pad_count);
+	print_len += ft_symbol(ptf, n, 1);
+	print_len += ft_print_special('0', ptf.prec_count);
+	ft_putnbr(n);
+	if (ft_flag_check(ptf.flags, PTF_MINUS))
+		print_len += ft_print_special(ptf.pad, ptf.pad_count);
 	return (print_len);
 }
+
+// calcola pad (controllando ' ', '+' e/o '-')
+// stampa pad [left] se non c'e' PTF_MINUS
+// stampa ' ' se c'e' PTF_SPACE, 
+//	stampa '+' se c'e' PTF_PLUS, stampa '-' se n < 0
+// stampa prec
+// stampa n
+// stampa pad [right] se c'e' PTF_MINUS
