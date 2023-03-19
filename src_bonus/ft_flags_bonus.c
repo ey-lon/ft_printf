@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:09:56 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/19 09:49:50 by abettini         ###   ########.fr       */
+/*   Updated: 2023/03/19 12:35:05 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,6 @@ void	ft_flags_init(t_ptf *ptf)
 	ptf->prec_count = 0;
 	ptf->pad_count = 0;
 	ptf->pad = ' ';
-}
-
-char	ft_pad_check(int flags)
-{
-	if (ft_flag_check(flags, PTF_ZERO)
-		&& !ft_flag_check(flags, PTF_MINUS)
-		&& !ft_flag_check(flags, PTF_PREC))
-		return ('0');
-	return (' ');
 }
 
 void	ft_set_flags1(t_ptf *ptf, char c)
@@ -78,7 +69,13 @@ int	ft_flags(va_list ap, const char *s, int *i)
 		ft_set_flags2(&ptf, s, i);
 		*i += 1;
 	}
-	ptf.pad = ft_pad_check(ptf.flags);
+	if (ft_flag_check(ptf.flags, PTF_PLUS))
+		ptf.flags = ft_remove_flag(ptf.flags, PTF_SPACE);
+	if (ft_flag_check(ptf.flags, PTF_PREC) \
+		|| ft_flag_check(ptf.flags, PTF_MINUS))
+		ptf.flags = ft_remove_flag(ptf.flags, PTF_ZERO);
+	if (ft_flag_check(ptf.flags, PTF_ZERO))
+		ptf.pad = '0';
 	ptf.format = s[*i];
 	print_len = ft_conv(ap, ptf);
 	return (print_len);

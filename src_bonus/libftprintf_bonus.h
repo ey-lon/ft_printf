@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bonus.h                                  :+:      :+:    :+:   */
+/*   libftprintf_bonus.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 09:53:26 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/19 09:49:50 by abettini         ###   ########.fr       */
+/*   Updated: 2023/03/19 12:27:17 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	ft_flags(va_list ap, const char *s, int *i);
 int	ft_conv(va_list ap, t_ptf ptf);
 int	ft_print_special(int c, int count);
 int	ft_flag_check(int flags, int flag_to_find);
+int	ft_remove_flag(int flags, int flag_to_find);
 // ft_printf -----------------------------------------
 int	ft_printf(const char *str, ...);
 int	ft_print_chr(int c, t_ptf ptf);

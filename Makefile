@@ -6,7 +6,7 @@
 #    By: abettini <abettini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 14:36:43 by abettini          #+#    #+#              #
-#    Updated: 2023/03/19 09:46:44 by abettini         ###   ########.fr        #
+#    Updated: 2023/03/19 12:28:59 by abettini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CMP = $(GREEN)successfully compiled$(NOCOL)
 
 CC = cc
 
-NAME = ft_printf.a
+NAME = libftprintf.a
 
 SRC :=	src/ft_printf.c \
 	src/ft_print_chr.c \
@@ -42,7 +42,7 @@ BNS :=	src_bonus/ft_printf_bonus.c \
 	src_bonus/ft_print_hex_bonus.c \
 	src_bonus/ft_print_ptr_bonus.c \
 	src_bonus/ft_flags_bonus.c \
-	src_bonus/ft_print_flags_bonus.c \
+	src_bonus/ft_flags_utils.c \
 	src_bonus/utils_bonus.c
 
 OBJ_S = $(SRC:.c=.o)
