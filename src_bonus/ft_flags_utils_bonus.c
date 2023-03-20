@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_flags_utils.c                                   :+:      :+:    :+:   */
+/*   ft_flags_utils_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 16:48:26 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/19 12:28:09 by abettini         ###   ########.fr       */
+/*   Updated: 2023/03/20 08:42:45 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,9 @@
 
 int	ft_flag_check(int flags, int flag_to_find)
 {
-	int	i;
-
 	if (flag_to_find && flags)
 	{
-		i = 0;
-		while (!(flag_to_find & (1 << i)))
-			i++;
-		if (flags & (1 << i))
+		if ((flags & flag_to_find) == flag_to_find)
 			return (1);
 	}
 	return (0);
@@ -29,15 +24,10 @@ int	ft_flag_check(int flags, int flag_to_find)
 
 int	ft_remove_flag(int flags, int flag_to_find)
 {
-	int	i;
-
 	if (flag_to_find && flags)
 	{
-		i = 0;
-		while (!(flag_to_find & (1 << i)))
-			i++;
-		if (flags & (1 << i))
-			flags = flags ^ (1 << i);
+		if ((flags & flag_to_find) == flag_to_find)
+			flags = flags ^ flag_to_find;
 	}
 	return (flags);
 }
