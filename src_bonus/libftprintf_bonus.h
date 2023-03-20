@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 09:53:26 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/19 14:04:31 by abettini         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:56:47 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ int	ft_conv(va_list ap, t_ptf ptf);
 int	ft_print_special(int c, int count);
 int	ft_flag_check(int flags, int flag_to_find);
 int	ft_remove_flag(int flags, int flag_to_find);
+// unknown -------------------------------------------
+int	ft_check_format(char format);
+int	ft_print_unknown(const char *s, int *i, t_ptf ptf);
 // utils ---------------------------------------------
 int	ft_n_of(int len, int x);
 int	ft_isdigit(int arg);

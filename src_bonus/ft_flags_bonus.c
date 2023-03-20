@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:09:56 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/20 10:54:15 by abettini         ###   ########.fr       */
+/*   Updated: 2023/03/20 17:34:00 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	ft_flags(va_list ap, const char *s, int *i)
 	int		print_len;
 	t_ptf	ptf;
 
-	print_len = 0;
 	*i += 1;
 	ft_flags_init(&ptf);
 	ft_set_flags1(&ptf, s, i);
@@ -87,6 +86,9 @@ int	ft_flags(va_list ap, const char *s, int *i)
 	if (ft_flag_check(ptf.flags, PTF_ZERO))
 		ptf.pad = '0';
 	ptf.format = s[*i];
-	print_len = ft_conv(ap, ptf);
+	if (ft_check_format(ptf.format))
+		print_len = ft_conv(ap, ptf);
+	else
+		print_len = ft_print_unknown(s, i, ptf);
 	return (print_len);
 }

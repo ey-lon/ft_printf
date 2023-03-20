@@ -6,7 +6,7 @@
 #    By: abettini <abettini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 14:36:43 by abettini          #+#    #+#              #
-#    Updated: 2023/03/19 12:28:59 by abettini         ###   ########.fr        #
+#    Updated: 2023/03/20 14:37:59 by abettini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ BNS :=	src_bonus/ft_printf_bonus.c \
 	src_bonus/ft_print_uns_bonus.c \
 	src_bonus/ft_print_hex_bonus.c \
 	src_bonus/ft_print_ptr_bonus.c \
+	src_bonus/ft_print_unknown.c \
 	src_bonus/ft_flags_bonus.c \
 	src_bonus/ft_flags_utils_bonus.c \
 	src_bonus/utils_bonus.c

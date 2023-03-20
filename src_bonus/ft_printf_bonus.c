@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 10:06:23 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/20 10:54:16 by abettini         ###   ########.fr       */
+/*   Updated: 2023/03/20 17:22:56 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ int	ft_conv(va_list ap, t_ptf ptf)
 	else if (ptf.format == 'x' || ptf.format == 'X')
 		print_len = ft_print_hex(va_arg(ap, unsigned int), ptf);
 	else if (ptf.format == '%')
-	{
-		write(1, "%", 1);
-		print_len = 1;
-	}
+		print_len = write(1, "%", 1);
 	return (print_len);
 }
 
