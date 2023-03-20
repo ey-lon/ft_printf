@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 10:06:23 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/19 09:49:50 by abettini         ###   ########.fr       */
+/*   Updated: 2023/03/20 10:54:16 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,7 @@ int	ft_printf(const char *str, ...)
 		while (str[i])
 		{
 			if (str[i] == '%')
-			{
-				i++;
 				print_len += ft_flags(ap, str, &i);
-			}
 			else
 				print_len += write(1, &str[i], 1);
 			i++;

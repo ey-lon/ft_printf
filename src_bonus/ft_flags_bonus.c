@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:09:56 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/20 08:47:19 by abettini         ###   ########.fr       */
+/*   Updated: 2023/03/20 10:54:15 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,37 +21,50 @@ void	ft_flags_init(t_ptf *ptf)
 	ptf->pad = ' ';
 }
 
-void	ft_set_flags1(t_ptf *ptf, char c)
+void	ft_set_flags1(t_ptf *ptf, const char *s, int *i)
 {
-	if (c == '#')
-		ptf->flags |= PTF_HASH;
-	else if (c == ' ')
-		ptf->flags |= PTF_SPACE;
-	else if (c == '+')
-		ptf->flags |= PTF_PLUS;
-	else if (c == '-')
-		ptf->flags |= PTF_MINUS;
-	else if (c == '0')
-		ptf->flags |= PTF_ZERO;
+	while (s[*i] == '#' || s[*i] == '+' || s[*i] == ' ')
+	{
+		if (s[*i] == '#')
+			ptf->flags |= PTF_HASH;
+		else if (s[*i] == ' ')
+			ptf->flags |= PTF_SPACE;
+		else if (s[*i] == '+')
+			ptf->flags |= PTF_PLUS;
+		*i += 1;
+	}
 }
 
 void	ft_set_flags2(t_ptf *ptf, const char *s, int *i)
+{
+	while (s[*i] == '-' || s[*i] == '0')
+	{
+		if (s[*i] == '-')
+			ptf->flags |= PTF_MINUS;
+		else if (s[*i] == '0')
+			ptf->flags |= PTF_ZERO;
+		*i += 1;
+	}
+	if (ft_isdigit(s[*i]))
+	{
+		ptf->pad_count = ft_atoi(&s[*i]);
+		while (ft_isdigit(s[*i]))
+			*i += 1;
+	}
+}
+
+void	ft_set_flags3(t_ptf *ptf, const char *s, int *i)
 {
 	if (s[*i] == '.')
 	{
 		ptf->flags |= PTF_PREC;
 		*i += 1;
-		ptf->prec_count = ft_atoi(&s[*i]);
-		while (ft_isdigit(s[*i]))
-			*i += 1;
-		*i -= 1;
-	}
-	else if (ft_isdigit(s[*i]))
-	{
-		ptf->pad_count = ft_atoi(&s[*i]);
-		while (ft_isdigit(s[*i]))
-			*i += 1;
-		*i -= 1;
+		if (ft_isdigit(s[*i]))
+		{
+			ptf->prec_count = ft_atoi(&s[*i]);
+			while (ft_isdigit(s[*i]))
+				*i += 1;
+		}
 	}
 }
 
@@ -61,14 +74,11 @@ int	ft_flags(va_list ap, const char *s, int *i)
 	t_ptf	ptf;
 
 	print_len = 0;
+	*i += 1;
 	ft_flags_init(&ptf);
-	while (s[*i] == '#' || s[*i] == ' ' || s[*i] == '+'
-		|| s[*i] == '-' || s[*i] == '.' || ft_isdigit(s[*i]))
-	{
-		ft_set_flags1(&ptf, s[*i]);
-		ft_set_flags2(&ptf, s, i);
-		*i += 1;
-	}
+	ft_set_flags1(&ptf, s, i);
+	ft_set_flags2(&ptf, s, i);
+	ft_set_flags3(&ptf, s, i);
 	if (ft_flag_check(ptf.flags, PTF_PLUS))
 		ptf.flags = ft_remove_flag(ptf.flags, PTF_SPACE);
 	if (ft_flag_check(ptf.flags, PTF_PREC) \
