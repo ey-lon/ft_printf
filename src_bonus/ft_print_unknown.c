@@ -6,50 +6,77 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:37:09 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/20 17:33:18 by abettini         ###   ########.fr       */
+/*   Updated: 2023/03/21 10:15:11 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf_bonus.h"
 
-int	ft_check_format(char format)
+static void	ft_putnbr(int n)
 {
-	char	*formats;
-	int		i;
-
-	formats = "cspdiuxX%";
-	i = 0;
-	while (formats[i])
+	if (n == -2147483648)
 	{
-		if (format == formats[i])
-			return (1);
-		i++;
+		write(1, "-2147483648", 11);
+		return ;
 	}
-	return (0);
+	if (n < 0)
+	{
+		write(1, "-", 1);
+		n = -n;
+	}
+	if (n >= 10)
+	{
+		ft_putnbr(n / 10);
+		n = n % 10;
+	}
+	n = n + '0';
+	write(1, &n, 1);
 }
 
-int	ft_print_unknown(const char *s, int *i, t_ptf ptf)
+static int	ft_count_len(int n)
+{
+	int	len;
+
+	ft_putnbr(n);
+	if (n == -2147483648)
+		return (11);
+	len = 1;
+	if (n < 0)
+	{
+		n = -n;
+		len++;
+	}
+	while (n >= 10)
+	{
+		n = n / 10;
+		len++;
+	}
+	return (len);
+}
+
+int	ft_print_unknown(t_ptf ptf)
 {
 	int		print_len;
 
 	print_len = 0;
-	while (s[*i] != '%')
-		*i -= 1;
-	*i += 1;
 	print_len += write(1, "%", 1);
-	while (s[*i] == '#' || s[*i] == '+' || s[*i] == ' ')
-		*i += 1;
 	if (ft_flag_check(ptf.flags, PTF_HASH))
 		print_len += write(1, "#", 1);
 	if (ft_flag_check(ptf.flags, PTF_PLUS))
 		print_len += write(1, "+", 1);
-	if (ft_flag_check(ptf.flags, PTF_SPACE))
+	else if (ft_flag_check(ptf.flags, PTF_SPACE))
 		print_len += write(1, " ", 1);
-	while (s[*i] != '%' && s[*i] != '\0')
+	if (ft_flag_check(ptf.flags, PTF_MINUS))
+		print_len += write(1, "-", 1);
+	else if (ft_flag_check(ptf.flags, PTF_ZERO))
+		print_len += write(1, "0", 1);
+	if (ptf.pad_count > 0)
+		print_len += ft_count_len(ptf.pad_count);
+	if (ft_flag_check(ptf.flags, PTF_PREC))
 	{
-		print_len += write(1, &s[*i], 1);
-		*i += 1;
+		print_len += write(1, ".", 1);
+		print_len += ft_count_len(ptf.prec_count);
 	}
-	*i -= 1;
+	print_len += write(1, &ptf.format, 1);
 	return (print_len);
 }

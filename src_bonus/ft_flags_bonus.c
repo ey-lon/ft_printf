@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:09:56 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/20 17:34:00 by abettini         ###   ########.fr       */
+/*   Updated: 2023/03/21 10:06:42 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,15 @@ int	ft_flags(va_list ap, const char *s, int *i)
 	ft_set_flags1(&ptf, s, i);
 	ft_set_flags2(&ptf, s, i);
 	ft_set_flags3(&ptf, s, i);
+	ptf.format = s[*i];
 	if (ft_flag_check(ptf.flags, PTF_PLUS))
 		ptf.flags = ft_remove_flag(ptf.flags, PTF_SPACE);
-	if (ft_flag_check(ptf.flags, PTF_PREC) \
-		|| ft_flag_check(ptf.flags, PTF_MINUS))
+	if ((ft_flag_check(ptf.flags, PTF_PREC) \
+		|| ft_flag_check(ptf.flags, PTF_MINUS)) \
+		&& ft_check_format(ptf.format))
 		ptf.flags = ft_remove_flag(ptf.flags, PTF_ZERO);
 	if (ft_flag_check(ptf.flags, PTF_ZERO))
 		ptf.pad = '0';
-	ptf.format = s[*i];
-	if (ft_check_format(ptf.format))
-		print_len = ft_conv(ap, ptf);
-	else
-		print_len = ft_print_unknown(s, i, ptf);
+	print_len = ft_conv(ap, ptf);
 	return (print_len);
 }

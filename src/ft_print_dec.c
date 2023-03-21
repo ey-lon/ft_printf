@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 14:48:17 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/19 09:49:37 by abettini         ###   ########.fr       */
+/*   Updated: 2023/03/21 09:49:02 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	ft_putnbr(int n)
 
 int	ft_print_dec(int n)
 {
-	unsigned int	len;
+	int	len;
 
 	ft_putnbr(n);
 	if (n == -2147483648)

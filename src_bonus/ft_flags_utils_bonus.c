@@ -12,6 +12,22 @@
 
 #include "libftprintf_bonus.h"
 
+int	ft_check_format(char format)
+{
+	char	*formats;
+	int		i;
+
+	formats = "cspdiuxX%";
+	i = 0;
+	while (formats[i])
+	{
+		if (format == formats[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	ft_flag_check(int flags, int flag_to_find)
 {
 	if (flag_to_find && flags)
