@@ -1,5 +1,5 @@
 # ft_printf
-Recreation of the printf() function from libc
+Recreation of the printf() function from libc.
 
 - Supported conversions: `%` `c` `s` `p` `i` `d` `u` `x` `X`
 
