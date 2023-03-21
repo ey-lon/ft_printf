@@ -1,6 +1,10 @@
 # ft_printf
 Recreation of the printf() function from libc.
 
+| prototype |
+| --------- |
+| char  *get_next_line(int fd); |
+
 - Supported conversions: `%` `c` `s` `p` `i` `d` `u` `x` `X`
 
 ## Bonus
