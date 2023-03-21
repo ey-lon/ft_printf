@@ -8,6 +8,6 @@ Recreation of the printf() function from libc
 - Supported options: `-` `0` `.` `(width)`
 
 ## Usage
-`make` to compile libftprintf.a (std. version)
+`make` to compile *libftprintf.a* (std. version)
 
-`make bonus` to compile libftprintf.a (bonus version)
+`make bonus` to compile *libftprintf.a* (bonus version)
