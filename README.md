@@ -14,5 +14,5 @@ Recreation of the printf() function from libc.
 ## Usage
 | command | info |
 | ------- | ---- |
-| `make` | to compile *libftprintf.a* (std. version) |
-| `make bonus` | to compile *libftprintf.a* (bonus version) |
+| `make` | compile *libftprintf.a* (std. version) |
+| `make bonus` | compile *libftprintf.a* (bonus version) |
