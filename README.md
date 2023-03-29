@@ -9,7 +9,7 @@ Recreation of the printf() function from libc.
 
 ## Bonus
 - Supported flags: `#` `+` `(space)`
-- Supported options: `-` `0` `.` `(width)`
+- Supported options: `-` `0` `.` `*` `(width)`
 
 ## Usage
 | command | info |
