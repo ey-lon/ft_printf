@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:09:56 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/29 10:32:00 by abettini         ###   ########.fr       */
+/*   Updated: 2023/03/31 14:29:16 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	ft_flags_update(va_list ap, t_ptf *ptf)
 	if (ft_flag_check(ptf->flags, PTF_PLUS))
 		ptf->flags = ft_remove_flag(ptf->flags, PTF_SPACE);
 	if ((ft_flag_check(ptf->flags, PTF_PREC) \
-		|| ft_flag_check(ptf->flags, PTF_MINUS)) \
-		&& ft_check_format(ptf->format))
+		|| ft_flag_check(ptf->flags, PTF_MINUS) \
+		|| ptf->format == 's') && ft_check_format(ptf->format))
 		ptf->flags = ft_remove_flag(ptf->flags, PTF_ZERO);
 	if (ft_flag_check(ptf->flags, PTF_ZERO))
 		ptf->pad = '0';
