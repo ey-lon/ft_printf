@@ -6,7 +6,7 @@
 #    By: abettini <abettini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 14:36:43 by abettini          #+#    #+#              #
-#    Updated: 2023/03/29 10:20:17 by abettini         ###   ########.fr        #
+#    Updated: 2023/04/01 14:26:34 by abettini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,9 @@ fclean: clean
 	fi
 
 bonus: $(OBJ_B)
+	if [ -f $(NAME) ]; then\
+		/bin/rm -f $(NAME);\
+	fi
 	ar -rcs $(NAME) $^
 	echo "$(TCOL)$(NAME) w/ bonus $(CMP)"
 
