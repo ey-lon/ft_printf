@@ -6,7 +6,7 @@
 #    By: abettini <abettini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 14:36:43 by abettini          #+#    #+#              #
-#    Updated: 2023/04/01 14:26:34 by abettini         ###   ########.fr        #
+#    Updated: 2023/04/02 14:59:40 by abettini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ CMP = $(GREEN)successfully compiled$(NOCOL)
 #----------------------------------------------
 
 CC = cc
+
+RM = /bin/rm
 
 NAME = libftprintf.a
 
@@ -56,7 +58,8 @@ CFLAG = -Wall -Werror -Wextra
 all: $(NAME)
 
 $(NAME): $(OBJ_S)
-	ar -rcs $@ $^
+	@ar -d $(NAME) $(OBJ_B)
+	@ar -rcs $@ $^
 	echo "$(TCOL)$(NAME) $(CMP)"
 
 %.o:%.c
@@ -64,28 +67,24 @@ $(NAME): $(OBJ_S)
 
 clean:
 	if [ `find . -name "*.o" | wc -l` != 0 ]; then\
-		/bin/rm -f src/*.o;\
-		/bin/rm -f src_bonus/*.o;\
-		if [ `find . -name "*.o" | wc -l` = 0 ]; then\
-			echo "$(TCOL)object files ($(NAME)) $(RMD)";\
-		fi;\
+		$(RM) -f $(OBJ_S);\
+		$(RM) -f $(OBJ_B);\
+		echo "$(TCOL)object files ($(NAME)) $(RMD)";\
 	fi
 
 fclean: clean
 	if [ -f $(NAME) ]; then\
-		/bin/rm -f $(NAME);\
+		$(RM) -f $(NAME);\
 		echo "$(TCOL)$(NAME) $(RMD)";\
 	fi
 
 bonus: $(OBJ_B)
-	if [ -f $(NAME) ]; then\
-		/bin/rm -f $(NAME);\
-	fi
-	ar -rcs $(NAME) $^
+	@ar -d $(NAME) $(OBJ_S)
+	@ar -rcs $(NAME) $^
 	echo "$(TCOL)$(NAME) w/ bonus $(CMP)"
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: $(NAME) all clean fclean re bonus
 
 .SILENT:
