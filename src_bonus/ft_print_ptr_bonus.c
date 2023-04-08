@@ -39,7 +39,7 @@ static int	ft_ptr_len(long unsigned int n)
 	return (len);
 }
 
-static int	ft_ptr_symbol(t_ptf ptf, long unsigned int n, int x)
+static int	ft_ptr_symbol(t_ptf ptf, int x)
 {
 	int	len;
 
@@ -50,7 +50,7 @@ static int	ft_ptr_symbol(t_ptf ptf, long unsigned int n, int x)
 		if (x == 0)
 			write(1, " ", 1);
 	}
-	if (ft_flag_check(ptf.flags, PTF_PLUS) && n >= 0)
+	if (ft_flag_check(ptf.flags, PTF_PLUS))
 	{
 		len++;
 		if ((ft_flag_check(ptf.flags, PTF_ZERO) && x == 0) \
@@ -93,10 +93,10 @@ int	ft_print_ptr(long unsigned int n, t_ptf ptf)
 		print_len = len;
 		ptf.prec_count = ft_n_of(len, ptf.prec_count);
 		ptf.pad_count = ft_n_of(len + ptf.prec_count, ptf.pad_count);
-		ptf.pad_count -= ft_ptr_symbol(ptf, n, 0);
+		ptf.pad_count -= ft_ptr_symbol(ptf, 0);
 		if (!ft_flag_check(ptf.flags, PTF_MINUS))
 			print_len += ft_print_special(ptf.pad, ptf.pad_count);
-		print_len += ft_ptr_symbol(ptf, n, 1);
+		print_len += ft_ptr_symbol(ptf, 1);
 		print_len += ft_print_special('0', ptf.prec_count);
 		ft_put_long_hex(n);
 		if (ft_flag_check(ptf.flags, PTF_MINUS))
