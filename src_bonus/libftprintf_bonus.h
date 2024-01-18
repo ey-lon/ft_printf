@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 09:53:26 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/29 10:26:48 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/18 11:23:49 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LIBFTPRINTF_BONUS_H
 # include <stdarg.h>
 # include <unistd.h>
-# include <stdio.h>
+# include <limits.h>
 
 # define PTF_NOFLAGS 0
 # define PTF_HASH 1

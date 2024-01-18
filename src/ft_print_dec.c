@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 14:48:17 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/21 09:49:02 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/18 11:22:41 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ static void	ft_putnbr(int n)
 		n = -(n % 10);
 	}
 	if (n < 0)
+	{
+		write(1, "-", 1);
 		n = -n;
+	}
 	if (n >= 10)
 	{
 		ft_putnbr(n / 10);
