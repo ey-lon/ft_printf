@@ -14,10 +14,10 @@
 
 static void	ft_putnbr(int n)
 {
-	if (n == -2147483648)
+	if (n == INT_MIN)
 	{
-		write(1, "2147483648", 10);
-		return ;
+		ft_putnbr(n / 10);
+		n = -(n % 10);
 	}
 	if (n < 0)
 		n = -n;
@@ -34,18 +34,20 @@ static int	ft_int_len(int n)
 {
 	int	len;
 
-	if (n == -2147483648)
-		len = 10;
-	else
+	len = 1;
+	if (n == INT_MIN)
 	{
-		len = 1;
-		if (n < 0)
-			n = -n;
-		while (n >= 10)
-		{
-			n = n / 10;
-			len++;
-		}
+		n = n / 10;
+		len++;
+	}
+	if (n < 0)
+	{
+		n = -n;
+	}
+	while (n >= 10)
+	{
+		n = n / 10;
+		len++;
 	}
 	return (len);
 }
