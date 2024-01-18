@@ -43,6 +43,7 @@ static int	ft_int_len(int n)
 	if (n < 0)
 	{
 		n = -n;
+		len++;
 	}
 	while (n >= 10)
 	{
